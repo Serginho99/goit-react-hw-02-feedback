@@ -11,7 +11,7 @@ export default class App extends React.Component {
     bad: 0,
   };
 
-  onClick = propertyName => {
+  onLeaveFeedback = propertyName => {
     this.setState(prevState => {
       const value = prevState[propertyName];
       return { [propertyName]: value + 1 };
@@ -24,6 +24,9 @@ export default class App extends React.Component {
   };
 
   countPositiveFeedbackPercentage = (total, good) => {
+    if (!total) {
+      return;
+    }
     const percentage = Math.round((good / total) * 100);
     return percentage;
   };
@@ -39,7 +42,10 @@ export default class App extends React.Component {
     return (
       <>
         <Section title="Please leave feedback">
-          <FeedBackOptions options={options} onClick={this.onClick} />
+          <FeedBackOptions
+            options={options}
+            onLeaveFeedback={this.onLeaveFeedback}
+          />
         </Section>
         <Section title="Statistics">
           {total > 0 ? (
