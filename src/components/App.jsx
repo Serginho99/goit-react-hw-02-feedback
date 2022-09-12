@@ -11,21 +11,16 @@ export default class App extends React.Component {
     bad: 0,
   };
 
-  onClickGood = () => {
-    this.setState(prevState => ({ good: prevState.good + 1 }));
-  };
-
-  onClickNeutral = () => {
-    this.setState(prevState => ({ neutral: prevState.neutral + 1 }));
-  };
-
-  onClickBad = () => {
-    this.setState(prevState => ({ bad: prevState.bad + 1 }));
+  onClick = propertyName => {
+    this.setState(prevState => {
+      const value = prevState[propertyName];
+      return { [propertyName]: value + 1 };
+    });
   };
 
   countTotalFeedback = () => {
-    const values = Object.values(this.state);
-    return values.reduce((acc, value) => acc + value, 0);
+    const { good, neutral, bad } = this.state;
+    return good + neutral + bad;
   };
 
   countPositiveFeedbackPercentage = (total, good) => {
@@ -34,28 +29,24 @@ export default class App extends React.Component {
   };
 
   render() {
+    const { good, neutral, bad } = this.state;
     const total = this.countTotalFeedback();
     const positivePercentage = this.countPositiveFeedbackPercentage(
       total,
-      this.state.good
+      good
     );
     const options = Object.keys(this.state);
     return (
       <>
         <Section title="Please leave feedback">
-          <FeedBackOptions
-            options={options}
-            onClickGood={this.onClickGood}
-            onClickNeutral={this.onClickNeutral}
-            onClickBad={this.onClickBad}
-          />
+          <FeedBackOptions options={options} onClick={this.onClick} />
         </Section>
         <Section title="Statistics">
           {total > 0 ? (
             <Statistics
-              good={this.state.good}
-              neutral={this.state.neutral}
-              bad={this.state.bad}
+              good={good}
+              neutral={neutral}
+              bad={bad}
               total={total}
               positivePercentage={positivePercentage}
             />

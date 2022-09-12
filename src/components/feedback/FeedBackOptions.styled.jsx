@@ -9,7 +9,7 @@ export const TitleBtn = styled.h1`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin: -10px;
+  /* margin: -10px; */
 `;
 
 export const Button = styled.button`

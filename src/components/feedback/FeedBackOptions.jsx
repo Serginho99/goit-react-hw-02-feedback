@@ -1,32 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TitleBtn, Button, ButtonWrapper } from './FeedBackOptions.styled';
+import { Button, ButtonWrapper } from './FeedBackOptions.styled';
 
-export default function FeedBackOptions({
-  onClickGood,
-  onClickNeutral,
-  onClickBad,
-}) {
+export default function FeedBackOptions({ onClick }) {
   return (
-    <>
-      <TitleBtn>Please leave feedback</TitleBtn>
-      <ButtonWrapper>
-        <Button type="button" onClick={onClickGood}>
-          Good
-        </Button>
-        <Button type="button" onClick={onClickNeutral}>
-          Neutral
-        </Button>
-        <Button type="button" onClick={onClickBad}>
-          Bad
-        </Button>
-      </ButtonWrapper>
-    </>
+    <ButtonWrapper>
+      <Button onClick={() => onClick('good')} type="button">
+        Good
+      </Button>
+      <Button onClick={() => onClick('neutral')} type="button">
+        Neutral
+      </Button>
+      <Button onClick={() => onClick('bad')} type="button">
+        Bad
+      </Button>
+    </ButtonWrapper>
   );
 }
 
 FeedBackOptions.propTypes = {
-  onClickGood: PropTypes.func,
-  onClickNeutral: PropTypes.func,
-  onClickBad: PropTypes.func,
+  onClick: PropTypes.func,
 };

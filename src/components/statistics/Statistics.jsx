@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StatisticsTitle, Item, List } from './Statistics.styled';
+import { Item, List } from './Statistics.styled';
 
 export default function Statistics({
   good,
@@ -10,16 +10,13 @@ export default function Statistics({
   positivePercentage,
 }) {
   return (
-    <>
-      <StatisticsTitle>Statistics</StatisticsTitle>
-      <List>
-        <Item>Good: {good}</Item>
-        <Item>Neutral: {neutral}</Item>
-        <Item>Bad: {bad}</Item>
-        <Item>Total: {total}</Item>
-        <Item>Positive feedback: {positivePercentage}%</Item>
-      </List>
-    </>
+    <List>
+      <Item>Good: {good}</Item>
+      <Item>Neutral: {neutral}</Item>
+      <Item>Bad: {bad}</Item>
+      <Item>Total: {total}</Item>
+      <Item>Positive feedback: {positivePercentage}%</Item>
+    </List>
   );
 }
 

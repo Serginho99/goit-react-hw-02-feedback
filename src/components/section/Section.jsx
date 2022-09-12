@@ -1,5 +1,10 @@
-import { SectionBox } from './Section.styled';
+import { SectionBox, SectionTitle } from './Section.styled';
 
-export default function Section({ children }) {
-  return <SectionBox>{children}</SectionBox>;
+export default function Section({ title, children }) {
+  return (
+    <SectionBox>
+      {title && <SectionTitle>{title}</SectionTitle>}
+      {children}
+    </SectionBox>
+  );
 }
